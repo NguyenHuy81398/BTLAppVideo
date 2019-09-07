@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/hot_video"
+        android:title="@string/item_hotvideo"
+        android:id="@+id/mnHotVideo"/>
+
+    <item
+        android:icon="@drawable/category"
+        android:title="@string/item_category"
+        android:id="@+id/mnCategory"/>
+</menu>
