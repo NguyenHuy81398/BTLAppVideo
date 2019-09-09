@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity
             img_checkinternet.setImageResource(R.drawable.ic_nowifi);
         }else{
             getFragment(HotVideo_Fragment.newInstance());
+            setTitle("Hot Video");
         }
         nav_menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
