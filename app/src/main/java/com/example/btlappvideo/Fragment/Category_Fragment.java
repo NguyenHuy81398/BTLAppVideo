@@ -38,7 +38,7 @@ public class Category_Fragment extends Fragment {
     SendCategory sendCategory;
 
     public interface SendCategory{
-        void sendDataCategory(String id, String title);
+        void sendDataCategory(String id, String title, String thumb);
     }
 
     public static Category_Fragment newInstance() {
@@ -121,8 +121,8 @@ public class Category_Fragment extends Fragment {
 
                 category_adapter.setiOnClickItemCategory(new Category_Adapter.IOnClickItemCategory() {
                     @Override
-                    public void onClickItemCategory(String id, String title) {
-                        sendCategory.sendDataCategory(id, title);
+                    public void onClickItemCategory(String id, String title, String thumb) {
+                        sendCategory.sendDataCategory(id, title, thumb);
                     }
                 });
             } catch (Exception e) {

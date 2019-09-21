@@ -7,11 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import com.example.btlappvideo.Class.ItemCategory;
+import com.bumptech.glide.Glide;
+import com.example.btlappvideo.Class.HotVideo;
 import com.example.btlappvideo.Adapter.ItemCategory_Adapter;
 import com.example.btlappvideo.R;
 
@@ -28,9 +32,11 @@ public class ItemCategoryActivity extends AppCompatActivity {
     String url_itemcategory = "https://demo5639557.mockable.io/getItemCategory";
     RecyclerView rvItemCategory;
     private static final String TAG = "ItemCategoryActivity";
-    List<ItemCategory> itemCategories;
+    List<HotVideo> itemCategories;
     ItemCategory_Adapter itemCategory_adapter;
     ProgressBar pbLoadingItemCategory;
+    ImageView imgThumb;
+    TextView tvTitleItemCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +45,17 @@ public class ItemCategoryActivity extends AppCompatActivity {
 
         rvItemCategory = findViewById(R.id.rvItemCategory);
         pbLoadingItemCategory = findViewById(R.id.pbLoaddingItemCategory);
+        imgThumb = findViewById(R.id.imgThumb);
+        tvTitleItemCategory = findViewById(R.id.tvtitle_itemcategory);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         intent.getStringExtra("id");
-        intent.getStringExtra("title");
+        String title = intent.getStringExtra("title");
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#B40404'>" + title + "</font>"));
+        Glide.with(this).load(intent.getStringExtra("thumb")).into(imgThumb);
+        tvTitleItemCategory.setText(title);
 
         new DoGetItemCategory(url_itemcategory).execute();
 
@@ -103,9 +114,13 @@ public class ItemCategoryActivity extends AppCompatActivity {
                     String title = objectItemCategory.getString("title");
                     String avatar = objectItemCategory.getString("avatar");
                     String file_mp4 = objectItemCategory.getString("file_mp4");
+                    int file_mp4_size = objectItemCategory.getInt("file_mp4_size");
                     String date_created = objectItemCategory.getString("date_created");
+                    String date_modified = objectItemCategory.getString("date_modified");
+                    String date_published = objectItemCategory.getString("date_published");
+                    String youtube_url = objectItemCategory.getString("youtube_url");
 
-                    itemCategories.add(new ItemCategory(id, provider_id, category_id, title, avatar, file_mp4, date_created));
+                    itemCategories.add(new HotVideo(id, provider_id, category_id, title, avatar, file_mp4, file_mp4_size, date_created, date_modified, date_published,youtube_url));
                 }
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getBaseContext(), 2, RecyclerView.VERTICAL, false);
                 itemCategory_adapter = new ItemCategory_Adapter(getBaseContext(), itemCategories);
@@ -114,21 +129,16 @@ public class ItemCategoryActivity extends AppCompatActivity {
 
                 itemCategory_adapter.setiOnClickVideoCategory(new ItemCategory_Adapter.IOnClickVideoCategory() {
                     @Override
-                    public void onClickVideoCategory(String id, String title, String file_mp4, ArrayList<ItemCategory> itemCategories) {
-                        Intent intent = new Intent(getBaseContext(), PlayVideoCategoryActivity.class);
-                        intent.putExtra("id", id);
-                        intent.putExtra("title", title);
-                        intent.putExtra("file_mp4", file_mp4);
+                    public void onClickVideoCategory(ArrayList<HotVideo> itemCategories, int position) {
+                        Intent intent = new Intent(getBaseContext(), PlayVideoActivity.class);
                         intent.putExtra("list_video", itemCategories);
+                        intent.putExtra("position", position);
                         startActivity(intent);
                     }
-
                 });
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
     }
 }

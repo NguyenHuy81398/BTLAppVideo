@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.btlappvideo.Class.ItemCategory;
+import com.example.btlappvideo.Class.HotVideo;
 import com.example.btlappvideo.R;
 
 import java.util.ArrayList;
@@ -22,17 +22,17 @@ public class ItemCategory_Adapter extends RecyclerView.Adapter<ItemCategory_Adap
 
     Context context;
     IOnClickVideoCategory iOnClickVideoCategory;
-    List<ItemCategory> itemCategories;
+    List<HotVideo> itemCategories;
 
     public interface IOnClickVideoCategory{
-        void onClickVideoCategory(String id, String title, String file_mp4, ArrayList<ItemCategory> itemCategories);
+        void onClickVideoCategory(ArrayList<HotVideo> itemCategories, int position);
     }
 
     public void setiOnClickVideoCategory(IOnClickVideoCategory iOnClickVideoCategory) {
         this.iOnClickVideoCategory = iOnClickVideoCategory;
     }
 
-    public ItemCategory_Adapter(Context context, List<ItemCategory> itemCategories) {
+    public ItemCategory_Adapter(Context context, List<HotVideo> itemCategories) {
         this.context = context;
         this.itemCategories = itemCategories;
     }
@@ -48,8 +48,8 @@ public class ItemCategory_Adapter extends RecyclerView.Adapter<ItemCategory_Adap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Viewhoder holder, int position) {
-        final ItemCategory itemCategory = itemCategories.get(position);
+    public void onBindViewHolder(@NonNull final Viewhoder holder, final int position) {
+        final HotVideo itemCategory = itemCategories.get(position);
 
         holder.tvtitle_itemcategory.setText(itemCategory.getTitle());
         holder.tvdatecreated_itemcategory.setText(itemCategory.getDate_created());
@@ -58,7 +58,7 @@ public class ItemCategory_Adapter extends RecyclerView.Adapter<ItemCategory_Adap
         holder.rlitemcategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iOnClickVideoCategory.onClickVideoCategory(itemCategory.getId(), itemCategory.getTitle(), itemCategory.file_mp4, (ArrayList<ItemCategory>) itemCategories);
+                iOnClickVideoCategory.onClickVideoCategory((ArrayList<HotVideo>) itemCategories, position);
             }
         });
     }

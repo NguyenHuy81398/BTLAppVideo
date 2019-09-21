@@ -3,65 +3,186 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rlVideo"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
     tools:context=".Activity.PlayVideoActivity">
 
-    <VideoView
-        android:id="@+id/vdVideo"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true" />
-
-    <ImageView
-        android:id="@+id/btnplayvideo"
-        android:src="@drawable/ic_play"
-        android:layout_centerInParent="true"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp" />
-
     <RelativeLayout
-        android:id="@+id/controlvideo"
+        android:id="@+id/rlViewVideo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/backgroundcontrolvideo">
+        android:layout_height="@dimen/_180sdp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <VideoView
+                android:id="@+id/vdVideo"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
             android:orientation="horizontal"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:id="@+id/tvtimevideo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="00:00"
-                android:textColor="@color/white" />
+            <ImageView
+                android:layout_alignParentLeft="true"
+                android:id="@+id/btnPreviousVideo"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:src="@drawable/ic_skip_previous"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp" />
 
-            <SeekBar
-                android:id="@+id/sbVideo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="9"/>
+            <ImageView
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:id="@+id/btnplayvideo"
+                android:src="@drawable/ic_pause"
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp" />
 
-            <TextView
-                android:layout_marginTop="@dimen/_5sdp"
-                android:id="@+id/tvtimemaxvideo"
-                android:layout_width="0dp"
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/btnNextVideo"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:src="@drawable/ic_skip_next"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp" />
+        </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:id="@+id/controlvideo"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="00:00"
-                android:textColor="@color/white" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:id="@+id/tvtimevideo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="00:00"
+                    android:textColor="@color/white" />
+
+                <SeekBar
+                    android:id="@+id/sbVideo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"/>
+
+                <TextView
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:id="@+id/tvtimemaxvideo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="00:00"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/btnFullScreen"
+                    android:src="@drawable/ic_fullscreen"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp" />
+            </LinearLayout>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_below="@+id/rlViewVideo"
+        android:id="@+id/rlInforVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bgVideo"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_23sdp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgVideo"
+                    android:scaleType="fitXY"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_toRightOf="@+id/bgVideo"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:id="@+id/tvTitleVideo"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toRightOf="@+id/bgVideo"
+            android:layout_below="@+id/tvTitleVideo"
+            android:id="@+id/tvDateVideo"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/rlInforVideo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/llcach"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/red"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"/>
+
+            <TextView
+                android:layout_below="@+id/llcach"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/tvTiepTheo"
+                android:text="Tiếp theo"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_below="@+id/tvTiepTheo"
+                android:id="@+id/rvListVideo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

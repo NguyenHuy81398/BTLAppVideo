@@ -24,10 +24,4 @@
         android:background="@color/black"
         app:menu="@menu/menu"/>
 
-    <ImageView
-        android:id="@+id/img_checkinternet"
-        android:layout_centerInParent="true"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp" />
-
 </RelativeLayout>

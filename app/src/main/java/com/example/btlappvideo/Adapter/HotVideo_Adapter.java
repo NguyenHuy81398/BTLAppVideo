@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.btlappvideo.Class.HotVideo;
 import com.example.btlappvideo.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HotVideo_Adapter extends RecyclerView.Adapter<HotVideo_Adapter.Viewhoder> {
@@ -27,7 +28,7 @@ public class HotVideo_Adapter extends RecyclerView.Adapter<HotVideo_Adapter.View
     }
 
     public interface IOnClickVideo{
-        void onClickVideo(String title, String file_mp4);
+        void onClickVideo(ArrayList<HotVideo> hotVideos, int position);
     }
 
     public HotVideo_Adapter(Context context, List<HotVideo> hotVideoList) {
@@ -45,7 +46,7 @@ public class HotVideo_Adapter extends RecyclerView.Adapter<HotVideo_Adapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Viewhoder holder, int position) {
+    public void onBindViewHolder(@NonNull final Viewhoder holder, final int position) {
         final HotVideo hotVideo = hotVideoList.get(position);
         Glide.with(context).load(hotVideo.getAvatar()).into(holder.img_hotvideo);
         holder.tvtitle.setText(hotVideo.getTitle());
@@ -54,7 +55,7 @@ public class HotVideo_Adapter extends RecyclerView.Adapter<HotVideo_Adapter.View
         holder.ItemVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickVideo.onClickVideo(hotVideo.getTitle(), hotVideo.getFile_mp4());
+                onClickVideo.onClickVideo((ArrayList<HotVideo>) hotVideoList, position);
 
             }
         });

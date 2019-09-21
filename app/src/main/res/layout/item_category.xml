@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemCategory"
-    android:layout_marginTop="@dimen/_5sdp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/background">
 
     <ImageView
-        android:background="@color/background"
         android:id="@+id/img_category"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_140sdp" />
 
     <View
+        android:layout_alignParentBottom="true"
         android:background="@drawable/background_itemvideo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_140sdp"/>
+        android:layout_height="@dimen/_70sdp"/>
 
     <TextView
         android:layout_marginLeft="@dimen/_10sdp"
@@ -28,4 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"/>
 </RelativeLayout>

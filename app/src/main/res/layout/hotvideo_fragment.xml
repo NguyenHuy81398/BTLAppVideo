@@ -17,11 +17,16 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vpBanner"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_160sdp"
-                android:layout_marginBottom="@dimen/_8sdp"/>
+                android:layout_height="@dimen/_160sdp" />
+
+            <RelativeLayout
+                android:id="@+id/llcach1"
+                android:background="@color/red"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_8sdp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_below="@+id/vpBanner"
                 android:id="@+id/rvHotVideo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

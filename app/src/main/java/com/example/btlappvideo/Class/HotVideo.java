@@ -1,13 +1,15 @@
 package com.example.btlappvideo.Class;
 
-public class HotVideo {
+import java.io.Serializable;
+
+public class HotVideo implements Serializable {
 
     String id;
     String provider_id;
     String category_id;
     String title;
     String avatar;
-    String file_mp4;
+    public String file_mp4;
     int file_mp4_size;
     String date_created;
     String date_modified;

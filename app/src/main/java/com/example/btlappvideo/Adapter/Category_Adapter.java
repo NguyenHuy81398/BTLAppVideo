@@ -28,7 +28,7 @@ public class Category_Adapter extends RecyclerView.Adapter<Category_Adapter.View
     }
 
     public interface IOnClickItemCategory{
-        void onClickItemCategory(String id, String title);
+        void onClickItemCategory(String id, String title, String thumb);
     }
 
     public Category_Adapter(Context context, List<Category> categories) {
@@ -55,7 +55,7 @@ public class Category_Adapter extends RecyclerView.Adapter<Category_Adapter.View
         holder.itemCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iOnClickItemCategory.onClickItemCategory(category.getId(), category.getTitle());
+                iOnClickItemCategory.onClickItemCategory(category.getId(), category.getTitle(), category.getThumb());
             }
         });
     }

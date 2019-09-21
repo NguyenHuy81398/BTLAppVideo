@@ -10,19 +10,60 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvItemCategory"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/imgheader"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="@dimen/_140sdp">
+
+            <ImageView
+                android:id="@+id/imgThumb"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140sdp" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/background_itemvideo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"/>
+
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_105sdp"
+                android:paddingRight="@dimen/_2sdp"
+                android:textStyle="bold"
+                android:textColor="@color/textCategory"
+                android:textSize="@dimen/_20sdp"
+                android:id="@+id/tvtitle_itemcategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:background="@color/red"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/imgheader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvItemCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/pbLoaddingItemCategory"
             android:layout_centerInParent="true"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp" />
-
     </RelativeLayout>
+
 
 </ScrollView>

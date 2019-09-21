@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 
+import com.example.btlappvideo.Class.HotVideo;
 import com.example.btlappvideo.Fragment.Category_Fragment;
+import com.example.btlappvideo.Fragment.CheckInternet_Fragment;
 import com.example.btlappvideo.Fragment.HotVideo_Fragment;
 import com.example.btlappvideo.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -27,10 +30,14 @@ import androidx.fragment.app.Fragment;
 
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener , HotVideo_Fragment.Data, Category_Fragment.SendCategory {
 
     private static final String TAG = "MainActivity";
+    Handler handler;
+    Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         BottomNavigationView nav_menu = findViewById(R.id.nav_menu);
-        ImageView img_checkinternet = findViewById(R.id.img_checkinternet);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -52,12 +58,17 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        if(isConnected() == false){
-            img_checkinternet.setImageResource(R.drawable.ic_nowifi);
-        }else{
-            getFragment(HotVideo_Fragment.newInstance());
-            setTitle("Hot Video");
-        }
+//        handler = new Handler();
+//        runnable = new Runnable() {
+//            @Override
+//            public void run() {
+                CheckInternet();
+//                handler.postDelayed(runnable, 1000);
+//            }
+//        };
+//        handler.postDelayed(runnable, 1000);
+
+
         nav_menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -71,7 +82,6 @@ public class MainActivity extends AppCompatActivity
                         setTitle("Category");
                         break;
                 }
-
                 return false;
             }
         });
@@ -96,18 +106,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_hotvideo) {
+            getFragment(HotVideo_Fragment.newInstance());
+            setTitle("Hot Video");
+        } else if (id == R.id.nav_category) {
+            getFragment(Category_Fragment.newInstance());
+            setTitle("Category");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -127,18 +131,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void senData(String title, String file_mp4) {
+    public void senData(ArrayList<HotVideo> hotVideos, int position) {
         Intent intent = new Intent(getBaseContext(), PlayVideoActivity.class);
-        intent.putExtra("title", title);
-        intent.putExtra("file_mp4", file_mp4);
+        intent.putExtra("list_video", hotVideos);
+        intent.putExtra("position", position);
         startActivity(intent);
     }
 
     @Override
-    public void sendDataCategory(String id, String title) {
+    public void sendDataCategory(String id, String title, String thumb) {
         Intent intent_itemcategory = new Intent(getBaseContext(), ItemCategoryActivity.class);
         intent_itemcategory.putExtra("id", id);
         intent_itemcategory.putExtra("title", title);
+        intent_itemcategory.putExtra("thumb", thumb);
         startActivity(intent_itemcategory);
     }
 
@@ -146,5 +151,14 @@ public class MainActivity extends AppCompatActivity
         ConnectivityManager cm = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    private void CheckInternet(){
+        if(isConnected() == false){
+            getFragment(CheckInternet_Fragment.newInstance());
+        }else{
+            getFragment(HotVideo_Fragment.newInstance());
+            setTitle("Hot Video");
+        }
     }
 }

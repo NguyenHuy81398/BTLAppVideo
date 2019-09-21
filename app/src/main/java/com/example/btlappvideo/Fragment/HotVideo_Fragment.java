@@ -1,7 +1,11 @@
 package com.example.btlappvideo.Fragment;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +53,7 @@ public class HotVideo_Fragment extends Fragment {
     ProgressBar progressBar;
 
     public interface Data{
-        void senData(String title, String file_mp4);
+        void senData(ArrayList<HotVideo> hotVideos, int position);
     }
 
     public static HotVideo_Fragment newInstance() {
@@ -160,18 +165,14 @@ public class HotVideo_Fragment extends Fragment {
 
                 hotVideo_adapter.setOnClickVideo(new HotVideo_Adapter.IOnClickVideo() {
                     @Override
-                    public void onClickVideo(String title, String file_mp4) {
-                        data.senData(title, file_mp4);
-                        Toast.makeText(getContext(), title, Toast.LENGTH_LONG).show();
+                    public void onClickVideo(ArrayList<HotVideo> hotVideos, int position) {
+                        data.senData(hotVideos, position);
                     }
                 });
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-
-
     }
 
     @Override

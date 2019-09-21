@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_140sdp"
+    android:layout_height="@dimen/_150sdp"
     android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginLeft="@dimen/_2sdp"
     android:layout_marginRight="@dimen/_2sdp"
@@ -33,7 +33,6 @@
 
                     <ImageView
                         android:layout_centerInParent="true"
-                        android:layout_marginTop="@dimen/_30sdp"
                         android:src="@drawable/ic_video"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp" />
@@ -47,16 +46,18 @@
                     <TextView
                         android:id="@+id/tvtitle"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:textSize="@dimen/_11sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
                         android:text="@string/item_category"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:textSize="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:layout_marginLeft="@dimen/_200sdp"
+                        android:layout_marginLeft="@dimen/_58sdp"
                         android:id="@+id/tvdate_published"
+                        android:textColor="@color/white"
                         android:text="@string/item_hotvideo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
