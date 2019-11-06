@@ -1,4 +1,4 @@
-package com.example.btlappvideo;
+package com.example.test;
 
 import org.junit.Test;
 

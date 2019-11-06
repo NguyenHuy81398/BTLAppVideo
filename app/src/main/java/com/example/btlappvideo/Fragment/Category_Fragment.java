@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.btlappvideo.Adapter.Category_Adapter;
-import com.example.btlappvideo.Class.Category;
+import com.example.btlappvideo.UserFunction.VideoCategory.Category_Adapter;
+import com.example.btlappvideo.Model.Category;
 import com.example.btlappvideo.R;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.example.btlappvideo.Class;
+package com.example.btlappvideo.Model;
 
 public class Category {
     String id;

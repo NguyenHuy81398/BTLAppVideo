@@ -1,4 +1,4 @@
-package com.example.btlappvideo.Adapter;
+package com.example.btlappvideo.UserFunction.VideoHot;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.btlappvideo.Class.HotVideo;
+import com.example.btlappvideo.Adapter.SQLHelperVideo;
+import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.R;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class HotVideo_Adapter extends RecyclerView.Adapter<HotVideo_Adapter.View
     Context context;
     List<HotVideo> hotVideoList;
     IOnClickVideo onClickVideo;
+    SQLHelperVideo sqlHelperVideo;
 
     public void setOnClickVideo(IOnClickVideo onClickVideo) {
         this.onClickVideo = onClickVideo;
@@ -51,12 +53,11 @@ public class HotVideo_Adapter extends RecyclerView.Adapter<HotVideo_Adapter.View
         Glide.with(context).load(hotVideo.getAvatar()).into(holder.img_hotvideo);
         holder.tvtitle.setText(hotVideo.getTitle());
         holder.tvdate_published.setText(hotVideo.getDate_published());
-
         holder.ItemVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onClickVideo.onClickVideo((ArrayList<HotVideo>) hotVideoList, position);
-
+                sqlHelperVideo.insertVideoHistory(hotVideoList.get(position).getId(), hotVideoList.get(position).getTitle(), hotVideoList.get(position).getAvatar(), hotVideoList.get(position).getFile_mp4(), hotVideoList.get(position).getDate_published());
             }
         });
     }

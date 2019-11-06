@@ -1,4 +1,4 @@
-package com.example.btlappvideo.Adapter;
+package com.example.btlappvideo.UserFunction.VideoCategory;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.btlappvideo.Class.Category;
+import com.example.btlappvideo.Model.Category;
 import com.example.btlappvideo.R;
 
 import java.util.List;
@@ -56,6 +56,7 @@ public class Category_Adapter extends RecyclerView.Adapter<Category_Adapter.View
             @Override
             public void onClick(View view) {
                 iOnClickItemCategory.onClickItemCategory(category.getId(), category.getTitle(), category.getThumb());
+
             }
         });
     }

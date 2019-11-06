@@ -5,9 +5,13 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_login"
+            android:title="Login" />
+        <item
             android:id="@+id/nav_hotvideo"
             android:icon="@drawable/category"
-            android:title="HotVideo" />
+            android:title="Hot Video" />
         <item
             android:id="@+id/nav_category"
             android:icon="@drawable/hot_video"

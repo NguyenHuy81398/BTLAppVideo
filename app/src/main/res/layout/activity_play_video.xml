@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/background"
-    tools:context=".Activity.PlayVideoActivity">
+    tools:context=".UserFunction.VideoPlayer.PlayVideoActivity">
 
     <RelativeLayout
         android:id="@+id/rlViewVideo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp">
+        android:layout_height="@dimen/_165sdp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -149,6 +149,16 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_below="@+id/tvTitleVideo"
+            android:layout_toRightOf="@id/tvDateVideo"
+            android:layout_marginLeft="@dimen/_120sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:id="@+id/btnLike"
+            android:src="@drawable/ic_like"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp" />
     </RelativeLayout>
 
     <ScrollView

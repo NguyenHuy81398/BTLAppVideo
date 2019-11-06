@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 
-import com.example.btlappvideo.Class.HotVideo;
+import com.example.btlappvideo.Fragment.Login_Fragment;
+import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.Fragment.Category_Fragment;
 import com.example.btlappvideo.Fragment.CheckInternet_Fragment;
 import com.example.btlappvideo.Fragment.HotVideo_Fragment;
 import com.example.btlappvideo.R;
+import com.example.btlappvideo.UserFunction.VideoCategory.ItemCategoryActivity;
+import com.example.btlappvideo.UserFunction.VideoHistory.VideoHistory_Fragment;
+import com.example.btlappvideo.UserFunction.VideoPlayer.PlayVideoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.os.Handler;
@@ -27,8 +31,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -81,6 +83,10 @@ public class MainActivity extends AppCompatActivity
                         getFragment(Category_Fragment.newInstance());
                         setTitle("Category");
                         break;
+                    case R.id.mnHistory:
+                        getFragment(VideoHistory_Fragment.newInstance());
+                        setTitle("Video History");
+                        break;
                 }
                 return false;
             }
@@ -112,6 +118,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_category) {
             getFragment(Category_Fragment.newInstance());
             setTitle("Category");
+        } else if (id == R.id.nav_login) {
+            getFragment(Login_Fragment.newInstance());
+            setTitle("Login");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

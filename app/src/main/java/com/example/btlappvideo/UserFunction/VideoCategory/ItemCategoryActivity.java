@@ -1,4 +1,4 @@
-package com.example.btlappvideo.Activity;
+package com.example.btlappvideo.UserFunction.VideoCategory;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,8 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.btlappvideo.Class.HotVideo;
-import com.example.btlappvideo.Adapter.ItemCategory_Adapter;
+import com.example.btlappvideo.UserFunction.VideoPlayer.PlayVideoActivity;
+import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.R;
 
 import org.json.JSONArray;
@@ -109,18 +109,15 @@ public class ItemCategoryActivity extends AppCompatActivity {
                     JSONObject objectItemCategory = itemCategoryJSonArray.getJSONObject(i);
 
                     String id = objectItemCategory.getString("id");
-                    String provider_id = objectItemCategory.getString("provider_id");
-                    String category_id = objectItemCategory.getString("category_id");
+
                     String title = objectItemCategory.getString("title");
                     String avatar = objectItemCategory.getString("avatar");
                     String file_mp4 = objectItemCategory.getString("file_mp4");
-                    int file_mp4_size = objectItemCategory.getInt("file_mp4_size");
-                    String date_created = objectItemCategory.getString("date_created");
-                    String date_modified = objectItemCategory.getString("date_modified");
-                    String date_published = objectItemCategory.getString("date_published");
-                    String youtube_url = objectItemCategory.getString("youtube_url");
 
-                    itemCategories.add(new HotVideo(id, provider_id, category_id, title, avatar, file_mp4, file_mp4_size, date_created, date_modified, date_published,youtube_url));
+                    String date_published = objectItemCategory.getString("date_published");
+
+
+                    itemCategories.add(new HotVideo(id, title, avatar, file_mp4, date_published));
                 }
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getBaseContext(), 2, RecyclerView.VERTICAL, false);
                 itemCategory_adapter = new ItemCategory_Adapter(getBaseContext(), itemCategories);

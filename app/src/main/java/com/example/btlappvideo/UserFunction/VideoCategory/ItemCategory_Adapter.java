@@ -1,4 +1,4 @@
-package com.example.btlappvideo.Adapter;
+package com.example.btlappvideo.UserFunction.VideoCategory;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.btlappvideo.Class.HotVideo;
+import com.example.btlappvideo.Adapter.SQLHelperVideo;
+import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.R;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class ItemCategory_Adapter extends RecyclerView.Adapter<ItemCategory_Adap
     Context context;
     IOnClickVideoCategory iOnClickVideoCategory;
     List<HotVideo> itemCategories;
+    SQLHelperVideo sqlHelperVideo;
+
 
     public interface IOnClickVideoCategory{
         void onClickVideoCategory(ArrayList<HotVideo> itemCategories, int position);
@@ -52,13 +55,14 @@ public class ItemCategory_Adapter extends RecyclerView.Adapter<ItemCategory_Adap
         final HotVideo itemCategory = itemCategories.get(position);
 
         holder.tvtitle_itemcategory.setText(itemCategory.getTitle());
-        holder.tvdatecreated_itemcategory.setText(itemCategory.getDate_created());
+        holder.tvdatecreated_itemcategory.setText(itemCategory.getDate_published());
         Glide.with(context).load(itemCategory.getAvatar()).into(holder.img_itemcategory);
 
         holder.rlitemcategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 iOnClickVideoCategory.onClickVideoCategory((ArrayList<HotVideo>) itemCategories, position);
+                sqlHelperVideo.insertVideoHistory(itemCategories.get(position).getId(), itemCategories.get(position).getTitle(), itemCategories.get(position).getAvatar(), itemCategories.get(position).getFile_mp4(), itemCategories.get(position).getDate_published());
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.example.btlappvideo.Activity;
+package com.example.btlappvideo.UserFunction.VideoPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,8 +22,8 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
-import com.example.btlappvideo.Adapter.VideoCategory_Apdapter;
-import com.example.btlappvideo.Class.HotVideo;
+import com.example.btlappvideo.Adapter.SQLHelperVideo;
+import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.R;
 
 import java.text.SimpleDateFormat;
@@ -47,6 +47,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     ProgressBar pbLoadVideo;
     int position;
     ArrayList<HotVideo> list_video;
+    SQLHelperVideo sqlHelperVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +160,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         tvDateVideo.setText(list_video.get(position).getDate_published());
         Glide.with(this).load(list_video.get(position).getAvatar()).into(imgVideo);
 
+        sqlHelperVideo.insertVideoHistory(list_video.get(position).getId(), list_video.get(position).getTitle(), list_video.get(position).getAvatar(), list_video.get(position).getFile_mp4(), list_video.get(position).getDate_published());
         Uri uri = Uri.parse(list_video.get(position).getFile_mp4());
         vdVideo.setVideoURI(uri);
 
@@ -189,6 +191,11 @@ public class PlayVideoActivity extends AppCompatActivity {
                 }
                 if(position == list_video.size()-1){
                     btnNextVideo.setImageResource(R.drawable.ic_skip_next_max);
+                    btnPreviousVideo.setImageResource(R.drawable.ic_skip_previous);
+                }
+
+                if(position > 0 && position < list_video.size()-1){
+                    btnNextVideo.setImageResource(R.drawable.ic_skip_next);
                     btnPreviousVideo.setImageResource(R.drawable.ic_skip_previous);
                 }
 
@@ -338,7 +345,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                         if(vdVideo.isPlaying()){
                             vdVideo.stopPlayback();
                         }
-                        if (position < list_video.size()-1){
+                        if (position <= list_video.size()-1){
 
                             tvTitleVideo.setText(list_video.get(position).getTitle());
                             tvDateVideo.setText(list_video.get(position).getDate_published());

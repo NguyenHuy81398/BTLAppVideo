@@ -1,11 +1,7 @@
 package com.example.btlappvideo.Fragment;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,19 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.btlappvideo.Adapter.BannerHotVideo_Adapter;
-import com.example.btlappvideo.Class.HotVideo;
-import com.example.btlappvideo.Adapter.HotVideo_Adapter;
+import com.example.btlappvideo.Adapter.SQLHelperVideo;
+import com.example.btlappvideo.UserFunction.VideoHot.BannerHotVideo_Adapter;
+import com.example.btlappvideo.Model.HotVideo;
+import com.example.btlappvideo.UserFunction.VideoHot.HotVideo_Adapter;
 import com.example.btlappvideo.R;
 
 import org.json.JSONArray;
@@ -126,20 +121,13 @@ public class HotVideo_Fragment extends Fragment {
                     JSONObject objectHotVideo = hotvideoJSonArray.getJSONObject(i);
 
                     String id = objectHotVideo.getString("id");
-                    String provider_id = objectHotVideo.getString("provider_id");
-                    String category_id = objectHotVideo.getString("category_id");
                     String title = objectHotVideo.getString("title");
                     String avatar = objectHotVideo.getString("avatar");
                     String file_mp4 = objectHotVideo.getString("file_mp4");
-                    int file_mp4_size = objectHotVideo.getInt("file_mp4_size");
-                    String date_created = objectHotVideo.getString("date_created");
-                    String date_modified = objectHotVideo.getString("date_modified");
                     String date_published = objectHotVideo.getString("date_published");
-                    String youtube_url = objectHotVideo.getString("youtube_url");
 
-                    hotVideos.add(new HotVideo(id, provider_id, category_id, title, avatar, file_mp4, file_mp4_size, date_created, date_modified, date_published,youtube_url));
+                    hotVideos.add(new HotVideo(id, title, avatar, file_mp4, date_published));
                 }
-                //hotVideos.add(new HotVideo("1", "2", "2", "2", "https://dzbbmecpa0hd2.cloudfront.net/video/avatar/2019/04/23/15/1556007321_abd6e57f5f84fff5.jpg", "1", 2, "", "", "",""));
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
                 hotVideo_adapter = new HotVideo_Adapter(getActivity(), hotVideos);
                 recyclerView.setAdapter(hotVideo_adapter);
@@ -166,6 +154,7 @@ public class HotVideo_Fragment extends Fragment {
                 hotVideo_adapter.setOnClickVideo(new HotVideo_Adapter.IOnClickVideo() {
                     @Override
                     public void onClickVideo(ArrayList<HotVideo> hotVideos, int position) {
+
                         data.senData(hotVideos, position);
                     }
                 });

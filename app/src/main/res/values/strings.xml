@@ -17,5 +17,7 @@
     //menu
     <string name="item_category">Categories</string>
     <string name="item_hotvideo">Hot Video</string>
+    <string name="item_history">Video History</string>
+
     <string name="title_activity_play_video">PlayVideoActivity</string>
 </resources>

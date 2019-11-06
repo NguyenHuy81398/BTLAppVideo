@@ -1,7 +1,6 @@
-package com.example.btlappvideo.Adapter;
+package com.example.btlappvideo.UserFunction.VideoPlayer;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.btlappvideo.Class.HotVideo;
+import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.R;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class VideoCategory_Apdapter extends RecyclerView.Adapter<VideoCategory_A
         final HotVideo itemCategory = itemCategoryList.get(position);
 
         holder.tvTitleVideoCategory.setText(itemCategory.getTitle());
-        holder.tvDateVideoCategory.setText(itemCategory.getDate_created());
+        holder.tvDateVideoCategory.setText(itemCategory.getDate_published());
         Glide.with(context).load(itemCategory.getAvatar()).into(holder.imgVideoCategory);
         holder.rlVideoCategory.setOnClickListener(new View.OnClickListener() {
             @Override

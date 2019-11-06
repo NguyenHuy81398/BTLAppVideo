@@ -9,4 +9,9 @@
         android:icon="@drawable/category"
         android:title="@string/item_category"
         android:id="@+id/mnCategory"/>
+
+    <item
+        android:icon="@drawable/ic_history"
+        android:title="@string/item_history"
+        android:id="@+id/mnHistory"/>
 </menu>
