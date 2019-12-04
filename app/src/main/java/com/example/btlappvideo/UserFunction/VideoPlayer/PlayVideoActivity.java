@@ -13,15 +13,18 @@ import android.os.Handler;
 import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.example.btlappvideo.Adapter.SQLHelperFavourite;
 import com.example.btlappvideo.Adapter.SQLHelperVideo;
 import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.R;
@@ -44,9 +47,10 @@ public class PlayVideoActivity extends AppCompatActivity {
     RelativeLayout rlViewVideo;
     TextView tvTitleVideo, tvDateVideo;
     ImageView imgVideo, btnPreviousVideo, btnNextVideo;
-    ProgressBar pbLoadVideo;
     int position;
     ArrayList<HotVideo> list_video;
+    ImageView btnLike;
+    SQLHelperFavourite sqlHelperFavourite;
     SQLHelperVideo sqlHelperVideo;
 
     @Override
@@ -70,6 +74,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         imgVideo = findViewById(R.id.imgVideo);
         btnPreviousVideo = findViewById(R.id.btnPreviousVideo);
         btnNextVideo = findViewById(R.id.btnNextVideo);
+        btnLike = findViewById(R.id.btnLike);
 
         TruyenVideo();
 
@@ -159,8 +164,6 @@ public class PlayVideoActivity extends AppCompatActivity {
         tvTitleVideo.setText(list_video.get(position).getTitle());
         tvDateVideo.setText(list_video.get(position).getDate_published());
         Glide.with(this).load(list_video.get(position).getAvatar()).into(imgVideo);
-
-        sqlHelperVideo.insertVideoHistory(list_video.get(position).getId(), list_video.get(position).getTitle(), list_video.get(position).getAvatar(), list_video.get(position).getFile_mp4(), list_video.get(position).getDate_published());
         Uri uri = Uri.parse(list_video.get(position).getFile_mp4());
         vdVideo.setVideoURI(uri);
 
@@ -176,15 +179,27 @@ public class PlayVideoActivity extends AppCompatActivity {
         }, 2500);
 
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false);
+        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false);
         videoCategory_apdapter = new VideoCategory_Apdapter(getBaseContext(), list_video);
         rvListVideo.setAdapter(videoCategory_apdapter);
         rvListVideo.setLayoutManager(layoutManager);
+
+        sqlHelperFavourite = new SQLHelperFavourite(getBaseContext());
+        btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sqlHelperFavourite.insertVideoFavourite(list_video.get(position).getId(), list_video.get(position).getTitle(), list_video.get(position).getAvatar(), list_video.get(position).file_mp4, list_video.get(position).getDate_published());
+                Toast.makeText(getBaseContext(),"Thêm thành công.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        sqlHelperVideo = new SQLHelperVideo(getBaseContext());
         videoCategory_apdapter.setiSendVideo(new VideoCategory_Apdapter.ISendVideo() {
             @Override
             public void iOnClickListVideo(int positionlist) {
                 position = positionlist;
 
+                sqlHelperVideo.insertVideoHistory(list_video.get(position).getId(), list_video.get(position).getTitle(), list_video.get(position).getAvatar(), list_video.get(position).file_mp4, list_video.get(position).getDate_published());
                 if(position == 0){
                     btnPreviousVideo.setImageResource(R.drawable.ic_skip_previous_min);
                     btnNextVideo.setImageResource(R.drawable.ic_skip_next);
@@ -291,6 +306,8 @@ public class PlayVideoActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     private void SetTimeVideo(){

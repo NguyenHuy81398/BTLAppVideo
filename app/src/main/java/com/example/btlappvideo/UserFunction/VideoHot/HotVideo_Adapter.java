@@ -53,6 +53,9 @@ public class HotVideo_Adapter extends RecyclerView.Adapter<HotVideo_Adapter.View
         Glide.with(context).load(hotVideo.getAvatar()).into(holder.img_hotvideo);
         holder.tvtitle.setText(hotVideo.getTitle());
         holder.tvdate_published.setText(hotVideo.getDate_published());
+
+        sqlHelperVideo = new SQLHelperVideo(context);
+
         holder.ItemVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

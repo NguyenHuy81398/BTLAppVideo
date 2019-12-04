@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <ImageView
+        android:src="@drawable/logo"
+        android:layout_above="@+id/llEditText"
+        android:layout_width="@dimen/_400sdp"
+        android:layout_height="@dimen/_150sdp"/>
     <LinearLayout
         android:id="@+id/llEditText"
         android:layout_marginHorizontal="@dimen/_30sdp"
@@ -47,7 +52,7 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/tvDangKy"
+            android:id="@+id/btnRegister"
             android:background="@drawable/button_login"
             android:textColor="@color/white"
             android:layout_below="@+id/btnLogin"

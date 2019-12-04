@@ -7,30 +7,30 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <RelativeLayout
-        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="-10dp"
             android:id="@+id/imageView"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:src="@drawable/ic_videocam"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp" />
+            android:src="@drawable/logo"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp" />
 
         <TextView
+            android:layout_marginTop="@dimen/_30sdp"
             android:id="@+id/tvHoten"
-            android:gravity="center"
             android:textColor="@color/white"
-            android:layout_below="@+id/imageView"
+            android:layout_toRightOf="@id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nhóm 18" />
 
         <TextView
             android:id="@+id/textView"
-            android:gravity="center"
             android:layout_below="@+id/tvHoten"
+            android:layout_toRightOf="@id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"

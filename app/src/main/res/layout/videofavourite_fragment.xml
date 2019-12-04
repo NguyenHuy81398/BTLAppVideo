@@ -9,23 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvVideoHistory"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvVideoFavourite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <ProgressBar
-            android:id="@+id/pbLoaddingHistory"
+            android:id="@+id/pbLoaddingFavourite"
             android:layout_centerInParent="true"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp" />
 
         <TextView
-            android:id="@+id/tvHistoryNull"
+            android:id="@+id/tvFavouriteNull"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_16sdp"
             android:textColor="@color/white"
-            android:text="Chưa xem video nào"/>
+            android:text="Chưa có video yêu thích nào"/>
     </RelativeLayout>
 </ScrollView>

@@ -18,6 +18,16 @@
     <string name="item_category">Categories</string>
     <string name="item_hotvideo">Hot Video</string>
     <string name="item_history">Video History</string>
+    <string name="item_favourite">Video Favourite</string>
 
     <string name="title_activity_play_video">PlayVideoActivity</string>
+
+    //User
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="fullname">Fullname</string>
+    <string name="email">Email</string>
+
+    //Button
+    <string name="oke">Register</string>
 </resources>

@@ -14,4 +14,9 @@
         android:icon="@drawable/ic_history"
         android:title="@string/item_history"
         android:id="@+id/mnHistory"/>
+
+    <item
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/item_favourite"
+        android:id="@+id/mnFavourite"/>
 </menu>

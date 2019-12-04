@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class VideoHistory_Fragment extends Fragment {
     RecyclerView rvVideoHistory;
     SQLHelperVideo sqlHelperVideo;
     ProgressBar pbVideoHistory;
+    TextView tvHistoryNull;
 
     public static VideoHistory_Fragment newInstance() {
 
@@ -42,16 +44,21 @@ public class VideoHistory_Fragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         rvVideoHistory = view.findViewById(R.id.rvVideoHistory);
         pbVideoHistory = view.findViewById(R.id.pbLoaddingHistory);
+        tvHistoryNull = view.findViewById(R.id.tvHistoryNull);
 
-        List<HotVideo> list_video = new ArrayList<>();
+        List<HotVideo> list_video;
         sqlHelperVideo = new SQLHelperVideo(getContext());
         list_video = sqlHelperVideo.getAllProductAdvanced();
 
-        history_adapter = new VideoHistory_Adapter(getContext(), list_video);
-        rvVideoHistory.setAdapter(history_adapter);
-        rvVideoHistory.setLayoutManager(layoutManager);
-
-        pbVideoHistory.setVisibility(View.GONE);
+        if(list_video.size() == 0){
+            pbVideoHistory.setVisibility(View.GONE);
+            tvHistoryNull.setVisibility(View.VISIBLE);
+        }else {
+            history_adapter = new VideoHistory_Adapter(getContext(), list_video);
+            rvVideoHistory.setAdapter(history_adapter);
+            rvVideoHistory.setLayoutManager(layoutManager);
+            pbVideoHistory.setVisibility(View.GONE);
+        }
         return view;
     }
 }

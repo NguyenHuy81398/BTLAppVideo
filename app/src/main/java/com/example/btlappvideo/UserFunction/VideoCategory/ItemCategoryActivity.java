@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.btlappvideo.Adapter.SQLHelperVideo;
 import com.example.btlappvideo.UserFunction.VideoPlayer.PlayVideoActivity;
 import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.R;
@@ -37,6 +38,7 @@ public class ItemCategoryActivity extends AppCompatActivity {
     ProgressBar pbLoadingItemCategory;
     ImageView imgThumb;
     TextView tvTitleItemCategory;
+    SQLHelperVideo sqlHelperVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,9 +126,11 @@ public class ItemCategoryActivity extends AppCompatActivity {
                 rvItemCategory.setAdapter(itemCategory_adapter);
                 rvItemCategory.setLayoutManager(layoutManager);
 
+                sqlHelperVideo = new SQLHelperVideo(getBaseContext());
                 itemCategory_adapter.setiOnClickVideoCategory(new ItemCategory_Adapter.IOnClickVideoCategory() {
                     @Override
                     public void onClickVideoCategory(ArrayList<HotVideo> itemCategories, int position) {
+                        sqlHelperVideo.insertVideoHistory(itemCategories.get(position).getId(), itemCategories.get(position).getTitle(), itemCategories.get(position).getAvatar(), itemCategories.get(position).file_mp4, itemCategories.get(position).getDate_published());
                         Intent intent = new Intent(getBaseContext(), PlayVideoActivity.class);
                         intent.putExtra("list_video", itemCategories);
                         intent.putExtra("position", position);

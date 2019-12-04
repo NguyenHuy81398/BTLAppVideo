@@ -58,6 +58,8 @@ public class ItemCategory_Adapter extends RecyclerView.Adapter<ItemCategory_Adap
         holder.tvdatecreated_itemcategory.setText(itemCategory.getDate_published());
         Glide.with(context).load(itemCategory.getAvatar()).into(holder.img_itemcategory);
 
+        sqlHelperVideo = new SQLHelperVideo(context);
+
         holder.rlitemcategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

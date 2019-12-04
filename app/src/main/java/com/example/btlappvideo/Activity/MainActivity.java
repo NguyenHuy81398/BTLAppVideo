@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 
-import com.example.btlappvideo.Fragment.Login_Fragment;
 import com.example.btlappvideo.Model.HotVideo;
 import com.example.btlappvideo.Fragment.Category_Fragment;
 import com.example.btlappvideo.Fragment.CheckInternet_Fragment;
 import com.example.btlappvideo.Fragment.HotVideo_Fragment;
 import com.example.btlappvideo.R;
 import com.example.btlappvideo.UserFunction.VideoCategory.ItemCategoryActivity;
+import com.example.btlappvideo.UserFunction.VideoFavorite.VideoFavourite_Fragment;
 import com.example.btlappvideo.UserFunction.VideoHistory.VideoHistory_Fragment;
 import com.example.btlappvideo.UserFunction.VideoPlayer.PlayVideoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -87,6 +87,10 @@ public class MainActivity extends AppCompatActivity
                         getFragment(VideoHistory_Fragment.newInstance());
                         setTitle("Video History");
                         break;
+                    case R.id.mnFavourite:
+                        getFragment(VideoFavourite_Fragment.newInstance());
+                        setTitle("Video Favourite");
+                        break;
                 }
                 return false;
             }
@@ -119,8 +123,8 @@ public class MainActivity extends AppCompatActivity
             getFragment(Category_Fragment.newInstance());
             setTitle("Category");
         } else if (id == R.id.nav_login) {
-            getFragment(Login_Fragment.newInstance());
-            setTitle("Login");
+            Intent intent_login = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent_login);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

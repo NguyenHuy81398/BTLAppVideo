@@ -10,12 +10,17 @@
             android:title="Login" />
         <item
             android:id="@+id/nav_hotvideo"
-            android:icon="@drawable/category"
+            android:icon="@drawable/hot_video"
             android:title="Hot Video" />
         <item
             android:id="@+id/nav_category"
-            android:icon="@drawable/hot_video"
+            android:icon="@drawable/category"
             android:title="Category" />
+
+        <item
+            android:id="@+id/nav_favourite"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/item_favourite" />
     </group>
 
 </menu>
